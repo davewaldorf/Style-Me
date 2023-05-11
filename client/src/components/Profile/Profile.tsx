@@ -4,11 +4,13 @@ import { getProfile, getLikes } from '../../apiService';
 import { setUser } from '../../redux/slices/user';
 import { useDispatch, useSelector } from 'react-redux';
 import Collection from '../Collection/Collection';
+import User from '../../mocks/looks';
 
 import { ReactComponent as AddBtn } from "../../assets/add_box.svg"
 
 function Profile() {
-  const { firstName, lastName, profileImg, country, looks, wardrobe } = useSelector((state: any) => state.user) || {};
+  const { firstName, lastName, profileImg, country, looks, wardrobe } = User;
+  // useSelector((state: any) => state.user) || {};
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('collection');
   const [likes, setLikes] = useState([]);

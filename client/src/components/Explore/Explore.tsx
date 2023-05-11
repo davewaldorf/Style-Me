@@ -3,10 +3,12 @@ import { setLooks } from "../../redux/slices/looks";
 import { useSelector, useDispatch } from "react-redux";
 import { getLooks, addLike } from "../../apiService";
 import {useForm} from "react-hook-form";
+import  User  from "../../mocks/looks";
 
 
 function Explore() {
-  const looks = useSelector((state: any) => state.user.looks);
+  // const looks = useSelector((state: any) => state.user.looks);
+  const looks = User.looks;
   const dispatch = useDispatch();
   const { register, handleSubmit, watch } = useForm();
   const liked = watch("isLiked");
