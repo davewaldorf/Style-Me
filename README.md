@@ -21,7 +21,8 @@ To run Style/Me on your local machine, you need to follow these steps:
 2. Install dependencies using the following command:
    ```bash
    npm install
-Backend Setup
+
+## Backend Setup
 To set up the backend for the Style/Me application, follow these steps:
 
 Make sure you have MongoDB installed and running on your local machine.
@@ -29,18 +30,16 @@ Make sure you have MongoDB installed and running on your local machine.
 Create a new database named styleme in MongoDB.
 
 bash
-Copy code
-$ mongo
-> use styleme
-> exit
-In the backend codebase, locate the database configuration file (e.g., config/db.js, config/database.js).
+- $ mongo
+- $ use styleme
+- $ exit
 
 Update the DATABASE_URL environmental variable with your MongoDB connection URL.
 
 DATABASE_URL=mongodb://localhost:27017/styleme
 Replace localhost:27017 with your MongoDB host and port configuration if needed.
 
-Environmental Variables
+## Environmental Variables
 To set up the environmental variables for the Style/Me application, follow these steps:
 
 Create a .env file in the root directory of the backend application.
@@ -57,7 +56,7 @@ Modify the values according to your specific configuration or preferences.
 
 Save the .env file.
 
-Frontend Setup
+## Frontend Setup
 To set up the frontend for the Style/Me application, follow these steps:
 
 Open a new terminal and navigate to the frontend directory: cd client.
@@ -158,7 +157,7 @@ Style/Me is released under the [MIT License](https://opensource.org/licenses/MIT
 
 ## Contact Information
 
-If you have any questions or feedback about Style/Me, you can reach out to us at [contact@styleme.com](mailto:contact@styleme.com).
+If you have any questions or feedback about Style/Me, you can reach out to us at [contact@styleme.com](mailto:dave.waldorf@me.com).
 
 ## Acknowledgments
 
