@@ -18,29 +18,56 @@ Please note that the link provided is the live deployment of the Style/Me web ap
 To run Style/Me on your local machine, you need to follow these steps:
 
 1. Clone this repository.
-2. Install dependencies using `npm install` command.
-3. Run the application using `npm start` command.
-
-#### Database Setup
-
-To set up the database for the Style/Me application, follow these steps:
-
-1. Make sure you have MongoDB installed and running on your local machine.
-2. Create a new database named `styleme` in MongoDB.
-
+2. Install dependencies using the following command:
    ```bash
-   $ mongo
-   > use styleme
-   > exit
-In your backend codebase, locate the database configuration file (e.g., config/db.js, config/database.js).
+   npm install
+Backend Setup
+To set up the backend for the Style/Me application, follow these steps:
+
+Make sure you have MongoDB installed and running on your local machine.
+
+Create a new database named styleme in MongoDB.
+
+bash
+Copy code
+$ mongo
+> use styleme
+> exit
+In the backend codebase, locate the database configuration file (e.g., config/db.js, config/database.js).
 
 Update the DATABASE_URL environmental variable with your MongoDB connection URL.
 
 DATABASE_URL=mongodb://localhost:27017/styleme
 Replace localhost:27017 with your MongoDB host and port configuration if needed.
 
-Save the changes in the database configuration file.
+Environmental Variables
+To set up the environmental variables for the Style/Me application, follow these steps:
 
+Create a .env file in the root directory of the backend application.
+
+Add the following environmental variables to the .env file:
+
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=mongodb://localhost:27017/styleme
+JWT_SECRET=secret
+GCLOUD_PROJECT_ID=YOUR_Google_Cloud_Project_Id
+BUCKET_NAME=styleme-YOUR_GOOGLE_BUCKET_NAME
+Modify the values according to your specific configuration or preferences.
+
+Save the .env file.
+
+Frontend Setup
+To set up the frontend for the Style/Me application, follow these steps:
+
+Open a new terminal and navigate to the frontend directory: cd client.
+Install frontend dependencies using the following command:
+bash
+npm install
+
+Make sure to replace `YOUR_Google_Cloud_Project_Id` and `YOUR_GOOGLE_BUCKET_NAME` with your actual Google Cloud project ID and bucket name.
+
+With this update, the installation section now includes information about setting up the backend, configuring environmental variables, and setting up the frontend.
 
 ### Dependencies
 
@@ -102,42 +129,6 @@ The following API routes are available in the application:
 #### Wardrobe Routes
 
 - `POST /api/wardrobe/:id`: Add an item to the user's wardrobe.
-
-## Environmental Variables
-
-To set up the environmental variables for the Style/Me application, follow these steps:
-
-1. Create a `.env` file in the root directory of the backend application.
-2. Add the following environmental variables to the `.env` file:
-
-- NODE_ENV=development
-- PORT=3000
-- DATABASE_URL=mongodb://localhost:27017/styleme
-- JWT_SECRET=secret
-- GCLOUD_PROJECT_ID=YOUR_Google_Cloud_Project_Id
-- BUCKET_NAME=styleme-YOUR_GOOGLE_BUCKET_NAME
-
-Modify the values according to your specific configuration or preferences.
-
-3. Save the `.env` file.
-
-4. In your backend codebase, use a library like `dotenv` to load the environmental variables from the `.env` file:
-
-require('dotenv').config();
-Place this line at the beginning of your backend entry file (e.g., index.js, app.js) to ensure the environmental variables are loaded before accessing them in your application.
-
-You can now access these environmental variables in your backend code using process.env.VARIABLE_NAME, where VARIABLE_NAME is the name of the environmental variable you want to access.
-
-Example:
-
-const port = process.env.PORT;
-const databaseUrl = process.env.DATABASE_URL;
-const jwtSecret = process.env.JWT_SECRET;
-const gcloudProjectId = process.env.GCLOUD_PROJECT_ID;
-const bucketName = process.env.BUCKET_NAME;
-Replace the variable names according to your specific usage.
-
-Note: Keep your environmental variables secure and do not expose them publicly. Avoid hardcoding sensitive information directly in your code and use environmental variables for storing such information.
 
 ## Features
 
