@@ -13,7 +13,7 @@ function Explore() {
   const looks = useSelector((state: User) => state.looks);
   const { register, watch } = useForm();
   const liked = watch("isLiked");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   
 
   useEffect(() => {
@@ -21,7 +21,9 @@ function Explore() {
       const response = await getLooks();
       dispatch(setLooks(response.looks));
     };
+    setLoading(true);
     fetchLooks();
+    setLoading(false);
   }, [dispatch, liked]);
 
   const handleLike = async (id: string) => {
@@ -33,13 +35,13 @@ function Explore() {
    }
 
   return (
-    <>
-      {loading ? ( 
+  <>
+    {loading ? ( 
         <Spinner />
       ) :
       looks && looks.map((look: Look) => (
-        <div className="flex p-5 flex-col items-center justify-center h-full" key={look._id}>
-          <div className="card w-96 bg-base-100 shadow-xl"> 
+        <div className="flex p-5 flex-col items-center justify-center">
+          <div className="mt-10 card w-96 bg-base-100 shadow-xl" key={look._id}> 
             <div className="card-body">
               <figure>
                 <img src={look.imageUrl} alt="Shoes"
@@ -62,10 +64,10 @@ function Explore() {
               <p>{look.tags}</p>
             </div>
           </div>
-        </div>
+          </div>
       ))
       }
-    </>
+      </>
   );
 }
 

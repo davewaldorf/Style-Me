@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ReactComponent as AddBtn } from "../../assets/add_box.svg"
 import { logout } from "../../api/apiService";
 interface NavbarProps {
   setSelectedComponent: React.Dispatch<React.SetStateAction<string>>;

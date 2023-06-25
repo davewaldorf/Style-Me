@@ -52,11 +52,12 @@ exports.handleLike = async (req, res) => {
     const user = await User.findById(userId);
     const look = user.looks.id(lookId);
     console.log(user, 'look');
+    oldLikes = look.likes;
     look.likes += 1;
-
     await user.save();
     res.status(200).json({ message: 'Like updated' });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
+

@@ -12,7 +12,7 @@ function Dashboard() {
   return (
     <>
     <Navbar setSelectedComponent={setSelectedComponent} />
-    <div className="bg-black-100 min-h-screen">
+    <div className="h-screen">
     {selectedComponent === "Profile" && <Profile />}
     {selectedComponent === "Explore" && <Explore />}
     {selectedComponent === "Contact Form" && <ContactForm />}

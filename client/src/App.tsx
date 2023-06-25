@@ -11,6 +11,7 @@ import Profile from './components/Profile/Profile';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import LandingPage from './components/LandingPage/LandingPage';
 import Explore from './components/Explore/Explore';
+import ContactForm from './components/ContactForm/ContactForm';
 
 
 function App() {
@@ -29,8 +30,7 @@ function App() {
         ) : (
           <>
             <Route path="/" element={<Dashboard />} />
-            {/* <Route path="/profile" element={<Profile />} />
-            <Route path="/explore" element={<Explore />} /> */}
+            <Route path="/contact" element={<ContactForm />} />
           </>
         )}
         <Route path="*" element={<NotFoundPage />} />

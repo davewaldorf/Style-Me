@@ -1,31 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { addLook, uploadImage, addToWardrobe } from '../../api/apiService';
-import Loader from '../Loader/Loader';
+import Spinner from '../Spinner/Spinner';
 import SuccessModal from '../SucessModal/SucessModal';
 
 
 export default function Modal() {
-  const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitted, isSubmitting }, reset } = useForm();
   const [file, setFile] = useState<any>();
-  const [imageUrl, setImageUrl] = useState<any>();
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const selectedType = watch('type');
-  console.log(selectedType, 'selectedType');
 
   const onSubmit = async (data: any) => {
     const { type, category, tags, description } = data;
     try {
-      setLoading(true);
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', 'looks');
       const { url } = await uploadImage(formData);
-      setImageUrl(url);
-      console.log(imageUrl, 'imageurl');
       const item = {
         description: description,
         category: category,
@@ -38,16 +28,11 @@ export default function Modal() {
       } else {
         await addToWardrobe(item);
       }
-      console.log(item, 'look');
       reset();
-      setSubmitted(true);
-      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
     }
   }
-
 
   const handleFileChange = (e: any) => {
     setFile(e.target.files[0]);
@@ -55,7 +40,7 @@ export default function Modal() {
 
   return (
     <div>
-      {!submitted ? (
+      {!isSubmitted ? (
         <div>
           <input type="checkbox" id="my-modal-4" className="modal-toggle" />
           <label htmlFor="my-modal-4" className="modal cursor-pointer">
@@ -89,16 +74,15 @@ export default function Modal() {
                   <input type="file" id="imageUrl" {...register("imageUrl", { required: true })} onChange={handleFileChange} className="file-input w-full max-w-xs" />
                   {errors.description && <p className="text-red-500 text-xs italic">Image is required.</p>}
                 </div>
-                <div className="flex items-center justify-center">
-                  {loading ?
-                    (<Loader />) :
-                    (<button type="submit" className="btn btn-wide mt-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
-                    )}
+                <div className="flex items-center justify-center p-10">
+                {isSubmitting ? <Spinner /> : 
+                <button type="submit" className="btn btn-wide mt-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+               }
                 </div>
               </form>
             </label>
           </label>
-        </div>) :
+        </div>) : 
         (<SuccessModal />)}
     </div>
   )
