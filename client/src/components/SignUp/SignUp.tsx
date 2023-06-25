@@ -1,18 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { signUp } from '../../apiService';
-import { useState } from 'react';
+
+import SuccessMessage from '../SuccessMessage/SuccessMessage';
+import { signUp } from '../../api/apiService';
 
 function SignUpPage() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [submitted, setSubmitted] = useState(false);
+  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    const response = await signUp(data);
-    console.log(response);
-    setSubmitted(true);
+    await signUp(data);
     reset(); 
   };
 
@@ -36,15 +33,12 @@ function SignUpPage() {
         </div>
       </div>
       <div className="max-w-xl bg-white w-full h-screen flex items-center justify-center">
-        {submitted ? (
-        <div className='text-2xl font-bold p-10 text-center'>
-          <p>Congratulations!</p><br/>
-          <p>Your account has been successfully created!</p> <br/>
-          <Link to='/signin'>
-          <button className='btn btn-outline btn-success'>Sign In</button>
-          </Link>
-        </div>
-        
+        {isSubmitSuccessful ? (
+          <SuccessMessage
+            message="Congratulations! Your account has been successfully created!"
+            buttonText="Sign In"
+            buttonLink="/signin"
+          />
         ) : (  
           <form className="max-w-xl m-10" onSubmit={handleSubmit(onSubmit)}>
           <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">

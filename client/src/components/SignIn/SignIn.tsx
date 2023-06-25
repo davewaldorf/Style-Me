@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
-import { signIn } from "../../apiService";
+import { signIn } from "../../api/apiService";
 import { login } from "../../redux/slices/auth";
 import { setUser } from "../../redux/slices/user";
 
@@ -16,7 +16,6 @@ function SignIn() {
   
   const onSubmit = async (data: any) => {
     const response = await signIn(data);
-    console.log(response, 'response');
     if (response) {
       dispatch(setUser(response));
       dispatch(login({ userId: response._id }));

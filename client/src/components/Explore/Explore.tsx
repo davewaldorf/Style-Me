@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { setLooks } from "../../redux/slices/looks";
 import { useSelector, useDispatch } from "react-redux";
-import { getLooks, addLike } from "../../apiService";
+import { getLooks, addLike } from "../../api/apiService";
 import {useForm} from "react-hook-form";
-import  User  from "../../mocks/looks";
+import { User } from "../../types/User";
 
-
-function Explore() {
-  // const looks = useSelector((state: any) => state.user.looks);
-  const looks = User.looks;
+function Explore() {  
   const dispatch = useDispatch();
-  const { register, handleSubmit, watch } = useForm();
+  const looks = useSelector((state: User) => state.looks);
+  const { register, watch } = useForm();
   const liked = watch("isLiked");
   
 
   useEffect(() => {
     const fetchLooks = async () => {
-      const looks = await getLooks();
-      console.log(looks);
-      dispatch(setLooks(looks));
+      const response = await getLooks();
+      dispatch(setLooks(response.looks));
     };
     fetchLooks();
-  }, [dispatch]);
+  }, [liked]);
 
   const handleLike = async (id: string) => {
-    console.log(id);
     const updatedLook = await addLike(id);
-    console.log(updatedLook);
   };
 
   if (liked) {
@@ -35,8 +30,8 @@ function Explore() {
 
   return (
     <>
-      {looks.map((look: any) => (
-        <div className="flex p-20 flex-col items-center justify-center h-full">
+      {looks && looks.map((look: any) => (
+        <div className="flex p-5 flex-col items-center justify-center h-full">
           <div className="card w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <figure>

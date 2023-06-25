@@ -1,5 +1,6 @@
-import { User } from './types/User';
+import { User } from '../types/User';
 const BASE_URL = 'http://localhost:3000';
+
 
 export const signUp = async (user: User) => {
   try {
@@ -73,7 +74,6 @@ export const addLook = async (look: any) => {
       },
       body: JSON.stringify(look),
     });
-    console.log(response, 'response from api');
     return response.json();
   }
   catch (error) {

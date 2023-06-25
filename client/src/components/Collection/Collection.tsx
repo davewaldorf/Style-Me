@@ -1,62 +1,34 @@
-import { useEffect, useState } from "react";
-import { ReactComponent as Heart } from "../../assets/favorite_border.svg";
-import { ReactComponent as HeartFilled } from "../../assets/favorite.svg";
+import { useState } from "react";
 import PhotoModal from "../PhotoModal/PhotoModal";
-import { render } from "@testing-library/react";
+import { Look, WardrobeItem } from "../../types/User";
 
-function Collection({ collection }: any) {
-  const [liked, setLiked] = useState<string[]>([]);
-  const [selectedItem, setSelectedItem] = useState<any>(null);
-  const [renderCollection, setRenderCollection] = useState(collection); 
-  
- 
-  const handleLike = (itemId: string) => {
-    if (liked.includes(itemId)) {
-      setLiked(liked.filter((id) => id !== itemId));
-    } else {
-      setLiked([...liked, itemId]);
-    }
-  };
+interface CollectionProps {
+  collection: (Look | WardrobeItem)[];
+}
 
-  const handleSelectItem = (item: any) => {
+function Collection({ collection }: CollectionProps) {
+  const [selectedItem, setSelectedItem] = useState<Look | WardrobeItem | null>(null);
+
+  const handleSelectItem = (item: Look | WardrobeItem) => {
     setSelectedItem(item);
   };
 
-  useEffect(() => {
-    console.log('refreshed');
-    setRenderCollection(collection); 
-  }, [renderCollection]);
-
   return (
     <div className="grid grid-cols-3 gap-6 p-10">
-      {renderCollection.map((item: any) => (
-        <label htmlFor="my-modal-3">
-        <div key={item._id} onClick={() => handleSelectItem(item)} className="relative">
-          <img
-            className="object-cover w-full h-64 shadow-lg transition-transform duration-500 transform hover:scale-110"
-            src={item.imageUrl}
-            alt="wardrobe item"
-          />
-          {/* {liked.includes(item._id) ? (
-            <HeartFilled
-              className="absolute bottom-1 right-1 fill-red cursor-pointer"
-              onClick={() => handleLike(item._id)}
+      {collection.map((item: Look | WardrobeItem) => (
+        <label htmlFor="photo-modal" key={item._id?.$oid}>
+          <div onClick={() => handleSelectItem(item)} className="relative">
+            <img
+              className="object-cover w-full h-64 shadow-lg transition-transform duration-500 transform hover:scale-110"
+              src={item.imageUrl}
+              alt="wardrobe item"
             />
-          ) : (
-            <Heart
-              className="absolute bottom-1 right-1 cursor-pointer"
-              onClick={() => handleLike(item._id)}
-            />
-          )} */}
-        </div>
-        <PhotoModal item={selectedItem} />
+          </div>
         </label>
       ))}
+      <PhotoModal item={selectedItem} />
     </div>
   );
 }
 
 export default Collection;
-
-//TODO: fix the likes
-//TODO: show the details over hover

@@ -5,7 +5,6 @@ import Navbar from "../Navbar/Navbar";
 import Explore from "../Explore/Explore";
 import Modal from "../Modal/Modal";
 import ContactForm from "../ContactForm/ContactForm";
-import PhotoModal from "../PhotoModal/PhotoModal";
 
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState("Profile");

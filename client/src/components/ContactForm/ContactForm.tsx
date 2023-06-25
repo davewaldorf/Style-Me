@@ -1,13 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 function ContactForm() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [submitted, setSubmitted] = useState(false);
+  const { register, handleSubmit, reset, formState: { errors, isSubmitted } } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    setSubmitted(true);
     reset();
   }
 
@@ -68,7 +65,7 @@ function ContactForm() {
       )}
     </div>
   </div>
-  {submitted && (
+  {isSubmitted && (
             <h1 className="text-green-500 mb-5">Thank you for your message!</h1>
           )}
   <div className="md:flex md:items-center">

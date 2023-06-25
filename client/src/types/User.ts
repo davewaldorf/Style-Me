@@ -1,4 +1,5 @@
 export interface WardrobeItem {
+  _id?: { $oid: string};
   imageUrl?: string;
   category?: string;
   size?: string;
@@ -7,6 +8,7 @@ export interface WardrobeItem {
 }
 
 export interface Look {
+  _id?: { $oid: string};
   imageUrl: string;
   description?: string;
   category?: string;
@@ -16,10 +18,11 @@ export interface Look {
  
 
 export interface User {
+  _id?: { $oid: string};
   firstName: string;
   lastName: string;
   profileImg?: string;
-  dateOfBirth?: Date;
+  dateOfBirth: { $date: string } | string;
   gender: string;
   email: string;
   password: string;

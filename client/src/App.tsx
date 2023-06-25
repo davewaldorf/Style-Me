@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {authorized ? (
+        {!authorized ? (
           <>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signin" element={<SignIn />} />

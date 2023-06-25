@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { addLook, uploadImage, addToWardrobe } from '../../apiService';
+import { addLook, uploadImage, addToWardrobe } from '../../api/apiService';
 import Loader from '../Loader/Loader';
 import SuccessModal from '../SucessModal/SucessModal';
 

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 function LandingPage() { 
 return (
-  //TODO: Add a background image
-  
   <div className="flex flex-col md:flex-row items-center h-screen w-full bg-white">
   <div className="bg-sign-in bg-center bg-no-repeat bg-cover flex-grow h-screen p-20">
   <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight m-60">

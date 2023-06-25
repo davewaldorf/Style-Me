@@ -6,10 +6,10 @@ function PhotoModal(item: any) {
 
   return (
     <div>
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <input type="checkbox" id="photo-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
-          <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <label htmlFor="photo-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <div className="card-body flex items-center justify-center">
             <figure>
               <img src={imageUrl} alt={description}
