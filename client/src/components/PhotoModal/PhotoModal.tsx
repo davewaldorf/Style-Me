@@ -2,7 +2,6 @@ import React from 'react';
 
 function PhotoModal(item: any) {
   const { description, imageUrl, category, title, size, color, tags } = item.item || {};
-  console.log(item, 'item');
 
   return (
     <div>
