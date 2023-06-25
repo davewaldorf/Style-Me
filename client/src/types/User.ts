@@ -1,5 +1,5 @@
 export interface WardrobeItem {
-  _id?: { $oid: string};
+  _id?: string;
   imageUrl?: string;
   category?: string;
   size?: string;
@@ -8,7 +8,7 @@ export interface WardrobeItem {
 }
 
 export interface Look {
-  _id?: { $oid: string};
+  _id :string;
   imageUrl: string;
   description?: string;
   category?: string;
