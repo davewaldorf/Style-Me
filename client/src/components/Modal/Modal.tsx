@@ -4,17 +4,26 @@ import { addLook, uploadImage, addToWardrobe } from '../../api/apiService';
 import Spinner from '../Spinner/Spinner';
 import SuccessModal from '../SucessModal/SucessModal';
 
+interface FormData {
+  type: string;
+  category: string;
+  tags?: string;
+  description: string;
+  imageUrl: File;
+}
+
 
 export default function Modal() {
-  const { register, handleSubmit, formState: { errors, isSubmitted, isSubmitting }, reset } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitted, isSubmitting }, reset } = useForm<FormData>();
   const [file, setFile] = useState<any>();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     const { type, category, tags, description } = data;
     try {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', 'looks');
+      // Upload image to GCP and get the URL
       const { url } = await uploadImage(formData);
       const item = {
         description: description,
@@ -34,8 +43,11 @@ export default function Modal() {
     }
   }
 
-  const handleFileChange = (e: any) => {
-    setFile(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>)  => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+    setFile(selectedFile);
+    }
   }
 
   return (

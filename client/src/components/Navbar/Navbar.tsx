@@ -14,7 +14,7 @@ function Navbar(props: NavbarProps) {
 
   const handleLogout = async () => {
     await logout();
-    window.location.reload(); // Reload the page after logging out
+    window.location.reload(); 
   };
 
   return (

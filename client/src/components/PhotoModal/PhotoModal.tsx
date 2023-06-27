@@ -7,11 +7,11 @@ function PhotoModal(item: any) {
     <div>
       <input type="checkbox" id="photo-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative">
+        <div className="modal-box relative w-96 p-10">
           <label htmlFor="photo-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <div className="card-body flex items-center justify-center">
             <figure>
-              <img src={imageUrl} alt={description}
+              <img src={imageUrl} alt={description} 
               />
             </figure>
             <h2 className="card-title">

@@ -1,15 +1,21 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { getProfile, getLikes } from '../../api/apiService';
 import { setUser } from '../../redux/slices/user';
-import { useDispatch, useSelector } from 'react-redux';
+
 import Collection from '../Collection/Collection';
-import {mockUser as User} from '../../mocks/mockUser';
 
 import { ReactComponent as AddBtn } from "../../assets/add_box.svg"
+import {User} from '../../types/User';
+
+interface RootState {
+  user: User;
+}
 
 function Profile() {
-  const { firstName, lastName, profileImg, country, looks, wardrobe } = useSelector((state: any) => state.user) || {};
+  const { firstName, lastName, profileImg, country, looks, wardrobe } = useSelector(({ user }: RootState) => user) || {};
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('collection');
   const [likes, setLikes] = useState([]);
@@ -25,7 +31,7 @@ function Profile() {
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
 
 
   if (!firstName) {

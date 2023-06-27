@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PhotoModal from "../PhotoModal/PhotoModal";
-import { Look, WardrobeItem, User } from "../../types/User";
+import { Look, WardrobeItem } from "../../types/User";
 
 interface CollectionProps {
   collection: (Look | WardrobeItem)[];
@@ -19,7 +19,7 @@ function Collection({ collection }: CollectionProps) {
         <label htmlFor="photo-modal" key={item._id}>
           <div onClick={() => handleSelectItem(item)} className="relative">
             <img
-              className="object-cover w-full h-64 shadow-lg transition-transform duration-500 transform hover:scale-110"
+              className="object-cover w-full h-64 shadow-lg cursor-pointer transition-transform duration-500 transform hover:scale-110"
               src={item.imageUrl}
               alt="wardrobe item"
             />

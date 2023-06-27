@@ -28,6 +28,6 @@ export interface User {
   password: string;
   country?: string;
   looks: Look[];
-  wardrobe?: WardrobeItem[];
+  wardrobe: WardrobeItem[];
 }
 
