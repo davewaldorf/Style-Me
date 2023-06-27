@@ -14,18 +14,18 @@ function SignUpPage() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center h-screen w-full bg-white">
-      <div  className="bg-sign-up bg-no-repeat bg-cover bg-center text-center md:text-left flex-grow h-screen p-20">
-        <div className="m-12 p-10">
-          <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight mb-20">
+    <div className="bg-sign-up bg-no-repeat bg-cover bg-center flex flex-col md:flex-row items-center h-screen w-full bg-white">
+      <div  className="text-center md:text-left flex-grow h-screen md:p-20">
+        <div className="m-12">
+          <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight mb-10">
             STYLE/ME
           </h1>
-          <p className="text-4xl md:text-4xl text-white font-light">
+          <p className="text-xl md:text-4xl text-white font-bold">
             Say goodbye to fashion ruts and hello to endless inspiration at your
             fingertips.
           </p>
           <br></br>
-          <p className="text-4xl md:text-4xl text-white font-light mt-4">
+          <p className="text-xl md:text-4xl text-white font-bold mt-4">
             {`Whether you're looking for a fresh look for work, a night out with your`}
             {`friends, or a special occasion, our app has got you covered. Join`}
             {`now and start exploring the world of fashion like never before!`}
@@ -40,8 +40,8 @@ function SignUpPage() {
             buttonLink="/signin"
           />
         ) : (  
-          <form className="max-w-xl m-10" onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
+          <form className="max-w-xl mt-20" onSubmit={handleSubmit(onSubmit)}>
+          <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 text-center">
             Create an Account
             </h1>
             <div className="flex flex-col mb-4">

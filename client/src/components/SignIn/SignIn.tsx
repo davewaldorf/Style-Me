@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { signIn } from "../../api/apiService";
@@ -34,15 +34,15 @@ function SignIn() {
   };
     
   return (
-    <div className="flex flex-col md:flex-row items-center h-screen w-full bg-white">
+    <div className="bg-sign-in bg-center bg-no-repeat bg-cover flex flex-col md:flex-row items-center h-screen w-full bg-white">
         {failed && <Alert type="warning" message="Invalid email or password" />}
-  <div className="bg-sign-in bg-center bg-no-repeat bg-cover flex-grow h-screen p-20">
+  <div className="flex-grow h-screen p-20">
   <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight mb-20">
             STYLE/ME
           </h1>
   </div>
   <div className="max-w-2xl bg-white w-full h-screen flex items-center justify-center">
-    <form className="w-full flex flex-col items-center justify-center" onSubmit={handleSubmit(onSubmit)}>
+    <form className="w-full flex flex-col items-center justify-center p-10" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 text-center">
         Sign In
       </h1>

@@ -30,7 +30,7 @@ function Navbar(props: NavbarProps) {
             <li onClick={() => handleComponentChange("Contact Form")} className={`font-bold	 tab tab-lg tab-bordered ${activeTab === 'Contact' ? 'tab-active' : ''}`}>Contact</li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-3xl">STYLE/ME</a>
+        <a className="btn btn-ghost normal-case text-3xl" href="/">STYLE/ME</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

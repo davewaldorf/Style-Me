@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
+import Heart from "react-animated-heart";
+import Spinner from "../Spinner/Spinner";
+
 import { setLooks } from "../../redux/slices/looks";
 import { getLooks, addLike } from "../../api/apiService";
+
 import { User, Look } from "../../types/User";
-
-import Heart from "react-animated-heart";
-
-import Spinner from "../Spinner/Spinner";
 
 function Explore() {
   const dispatch = useDispatch();

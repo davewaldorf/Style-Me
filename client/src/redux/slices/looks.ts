@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Look } from '../../types/User';
 
 export const looksSlice = createSlice({
   name: 'looks',

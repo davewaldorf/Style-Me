@@ -72,8 +72,8 @@ function Profile() {
           </div>
         </div>
         <div className="tabs flex items-center justify-center mt-10">
-          <a onClick={() => setActiveTab('collection')} className={`font-bold tab tab-lg tab-bordered ${activeTab === 'collection' ? 'tab-active' : ''}`}>Collection</a>
-          <a onClick={() => setActiveTab('looks')} className={`font-bold tab tab-lg tab-bordered ${activeTab === 'looks' ? 'tab-active' : ''}`}>Looks</a>
+          <button onClick={() => setActiveTab('collection')} className={`font-bold tab tab-lg tab-bordered ${activeTab === 'collection' ? 'tab-active' : ''}`}>Collection</button>
+          <button onClick={() => setActiveTab('looks')} className={`font-bold tab tab-lg tab-bordered ${activeTab === 'looks' ? 'tab-active' : ''}`}>Looks</button>
         </div>
         <label htmlFor="my-modal-4" className="flex items-left justify-end btn-link cursor-pointer mr-10 hover:scale-120"><AddBtn className="h-8 w-8"/></label>
         {activeTab === 'collection' && <Collection collection={wardrobe} />}
