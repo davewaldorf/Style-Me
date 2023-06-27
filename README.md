@@ -61,16 +61,32 @@ The code for Style/Me is released under the MIT License.
 ### Mobile
 
 ![LandingPage](screenshots/LandingPage_Mobile.png)
-![Login](screenshots/Login_Mobile.png)
+![SignIn](screenshots/SignIn_Mobile.png)
 ![Profile](screenshots/Profile_Mobile.png)
 ![Upload](screenshots/Upload_Mobile.png)
 ![Explore](screenshots/Explore_Mobile.gif)
-
 ![Contact](screenshots/Contact_Mobile.png)
 
+## Credits
 
-
-
-
-
-
+- [React.js](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux](https://redux.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
+- [Express](https://expressjs.com/)
+- [Node.js](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Google Cloud Storage](https://cloud.google.com/storage)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [cors](https://www.npmjs.com/package/cors)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [multer](https://www.npmjs.com/package/multer)
+- [nodemon](https://www.npmjs.com/package/nodemon)
+- [react-animated-heart](https://www.npmjs.com/package/react-animated-heart)
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form)
+- [react-redux](https://www.npmjs.com/package/react-redux)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [react-spinners](https://www.npmjs.com/package/react-spinners)
+- [typescript](https://www.npmjs.com/package/typescript)
