@@ -1,5 +1,5 @@
 import { User } from '../types/User';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://style-me-server.vercel.app';
 
 
 export const signUp = async (user: User) => {
