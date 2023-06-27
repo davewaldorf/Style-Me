@@ -10,7 +10,7 @@ router.post('/login', userController.login, (req, res) => {
 });
 // router.get('/logout', userController.logout);
 
-// Profile routes
+// User routes
 router.get('/profile/:id', userController.getProfile);
 router.put('/profile/:id', userController.updateProfile);
 router.delete('/profile/:id', userController.deleteProfile);

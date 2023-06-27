@@ -36,3 +36,4 @@ dist
 
 # Google Cloud Platform
 nimble-orbit-*.json
+.vercel

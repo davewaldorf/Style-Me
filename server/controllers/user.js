@@ -104,6 +104,19 @@ exports.addToLooks = async (req, res) => {
   }
 };
 
+// Changing password
+
+// exports.changePassword = async (req, res) => {
+//   try {
+//     const { password } = req.body;
+//     const hashedPassword = await bcrypt.hash(password, saltRounds);
+//     await User.findByIdAndUpdate(req.params.id, { password: hashedPassword });
+//     res.status(200).json({ message: 'Password changed' });
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// }
+
 
 
 
