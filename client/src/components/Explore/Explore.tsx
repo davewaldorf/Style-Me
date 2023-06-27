@@ -1,73 +1,79 @@
 import React, { useEffect, useState } from "react";
-import {useForm} from "react-hook-form";
-
+import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { setLooks } from "../../redux/slices/looks";
 import { getLooks, addLike } from "../../api/apiService";
 import { User, Look } from "../../types/User";
 
+import Heart from "react-animated-heart";
+
 import Spinner from "../Spinner/Spinner";
 
-function Explore() {  
+function Explore() {
   const dispatch = useDispatch();
   const looks = useSelector((state: User) => state.looks);
-  const { register, watch } = useForm();
-  const liked = watch("isLiked");
   const [loading, setLoading] = useState(false);
-  
+  const [likedLookId, setLikedLookId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchLooks = async () => {
-      const response = await getLooks();
-      dispatch(setLooks(response.looks));
+      setLoading(true);
+      const { looks } = await getLooks();
+      dispatch(setLooks(looks));
+      setLoading(false);
     };
-    setLoading(true);
     fetchLooks();
-    setLoading(false);
-  }, [dispatch, liked]);
+  }, [dispatch]);
 
   const handleLike = async (id: string) => {
-    const updatedLook = await addLike(id);
+    setLikedLookId(id);
+    await addLike(id);
+    const { looks: updatedLooks } = await getLooks();
+    dispatch(setLooks(updatedLooks));
+    setLikedLookId(null);
   };
 
-  if (liked) {
-    handleLike(liked[0]);
-   }
-
   return (
-  <>
-    {loading ? ( 
+    <>
+      {loading ? (
         <Spinner />
-      ) :
-      looks && looks.map((look: Look) => (
-        <div className="flex p-5 flex-col items-center justify-center">
-          <div className="mt-10 card w-96 bg-base-100 shadow-xl" key={look._id}> 
-            <div className="card-body">
-              <figure>
-                <img src={look.imageUrl} alt="Shoes"
-                />
-                  <label className="swap swap-flip text-9xl absolute m-4 cursor-pointer opacity-0 hover:opacity-100">
-                    <input type="checkbox" 
-                    {...register("isLiked")}
-                    defaultChecked={liked}
-                    value={look._id}
-                    />
-                    <div className="swap-off">💖</div>
-                    <div className="swap-on">❤️‍🔥</div>
-                  </label>
-              </figure>
-              <div className="card-actions flex justify-end">
-                <svg onClick={(e) => handleLike(look._id)} xmlns="http://www.w3.org/2000/svg" className="cursor-pointer hover:scale-110 h-7 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                <h1 className="font-bold text-lg">{look.likes}</h1>
+      ) : (
+        looks &&
+        looks.map((look: Look) => (
+          <div
+            className="flex p-5 flex-col items-center justify-center"
+            key={look._id}
+          >
+            <div className="card w-96 bg-base-100 shadow-xl">
+              <div className="card-body">
+                <figure>
+                  <div className="relative">
+                    <img src={look.imageUrl} alt="user content" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-90 hover:scale-110">
+                      <Heart
+                        isClick={likedLookId === look._id}
+                        onClick={() => handleLike(look._id)}
+                      />
+                    </div>
+                  </div>
+                </figure>
+                <div className="card-body">
+                <div className="badge">
+                      {look.likes} 🤍
+                    </div>
+                  <h2 className="card-title">
+                    {look.description}
+                  </h2>
+                  <p>
+                    {look.tags}
+                  </p>
+                </div>
               </div>
-              <h2 className="card-title">{look.description}</h2>
-              <p>{look.tags}</p>
             </div>
           </div>
-          </div>
-      ))
-      }
-      </>
+        ))
+      )}
+    </>
   );
 }
 

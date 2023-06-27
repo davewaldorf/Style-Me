@@ -19,6 +19,7 @@ export const signUp = async (user: User) => {
 };
 
 export const signIn = async (user: User) => {
+  localStorage.setItem('authenticated', 'true');
   try {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
@@ -148,7 +149,7 @@ export const addLike = async (lookId: string) => {
 }
 
 export const logout = async () => {
-  localStorage.removeItem('authorized');
+  localStorage.removeItem('authenticated');
   localStorage.removeItem('userId');
   try {
     const response = await fetch(`${BASE_URL}/logout`, {

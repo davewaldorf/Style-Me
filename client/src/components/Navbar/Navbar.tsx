@@ -12,6 +12,11 @@ function Navbar(props: NavbarProps) {
     props.setSelectedComponent(componentName);
   };
 
+  const handleLogout = async () => {
+    await logout();
+    window.location.reload(); // Reload the page after logging out
+  };
+
   return (
     <div className="navbar bg-base-100 fixed z-10 shadow-lg">
       <div className="navbar-start">
@@ -35,7 +40,7 @@ function Navbar(props: NavbarProps) {
         </ul>
       </div>
       <div className="navbar-end">
-        <button onClick={() => logout()} className="btn btn-ghost normal-case mr-5">Logout</button>
+        <button onClick={handleLogout} className="btn btn-ghost normal-case mr-5">Logout</button>
       </div>
     </div>
   )

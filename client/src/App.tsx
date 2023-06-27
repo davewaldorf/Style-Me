@@ -15,13 +15,13 @@ import ContactForm from './components/ContactForm/ContactForm';
 
 
 function App() {
-  const authorized  = localStorage.getItem('authentificated');
+  const authenticated  = localStorage.getItem('authenticated');
   
 
   return (
     <Router>
       <Routes>
-        {!authorized ? (
+        {!authenticated ? (
           <>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signin" element={<SignIn />} />
@@ -30,6 +30,7 @@ function App() {
         ) : (
           <>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/contact" element={<ContactForm />} />
           </>
         )}
