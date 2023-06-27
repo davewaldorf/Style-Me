@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import { signIn } from "../../api/apiService";
 import { login } from "../../redux/slices/auth";
@@ -10,6 +11,7 @@ import Alert from "../Alert/Alert";
 
 function SignIn() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [failed, setFailed] = useState(false);
 
@@ -21,6 +23,7 @@ function SignIn() {
       dispatch(login({ userId: response._id }));
       localStorage.setItem("authentificated", 'true');
       localStorage.setItem("userId", response._id);
+      history.push("/");
       reset();
     } else {
       setFailed(true);
