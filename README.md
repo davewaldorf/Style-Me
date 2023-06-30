@@ -15,6 +15,10 @@ Please note that the link provided is the live deployment of the Style/Me web ap
 
 The server for Style/Me is deployed on Vercel at [https://style-me-server.vercel.app/](https://style-me-server.vercel.app/). The database is hosted on MongoDB Atlas, a cloud-based database service, ensuring the availability and scalability of the backend infrastructure.
 
+### Login
+- username: admin@styleme.com
+- password: admin
+
 ## Installation
 
 To run Style/Me on your local machine, follow these steps:
