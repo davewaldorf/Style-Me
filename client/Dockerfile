@@ -1,0 +1,16 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY client/package*.json ./
+
+RUN npm install
+
+COPY client/ .
+
+RUN npm run build
+
+EXPOSE 3000
+
+# Serve the React build using a simple static server
+CMD ["npx", "serve", "build"]

@@ -4,11 +4,19 @@ const path = require('path');
 const dotenv = require('dotenv');
 
 
-// Set up Google Cloud Storage client
-const storage = new Storage({
-  projectId: process.env.GCLOUD_PROJECT_ID,
-  keyFilename: path.join(__dirname, '../nimble-orbit-378923-3f42853384ff.json')
-});
+const getGCPCredentials = () => {
+  return process.env.GCP_PRIVATE_KEY
+    ? {
+        credentials: {
+          client_email: process.env.GCP_SERVICE_ACCOUNT_EMAIL,
+          private_key: process.env.GCP_PRIVATE_KEY,
+        },
+        projectId: process.env.GCP_PROJECT_ID,
+      }
+    : {};
+};
+
+const storage = new Storage(getGCPCredentials());
 
 // Set up multer middleware to handle file uploads
 const upload = multer({

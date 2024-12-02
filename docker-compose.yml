@@ -1,0 +1,41 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "3001:3001"   
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      MONGODB_URI: ${MONGODB_URI}
+      MONGODB_NAME: ${MONGODB_NAME}
+      GCLOUD_PROJECT_ID: ${GCLOUD_PROJECT_ID}
+      GCLOUD_KEYFILE: ./server/nimble-orbit-378923-9300e88c729d.json
+      BUCKET_NAME: ${BUCKET_NAME}
+    command: npm run dev
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+      - ./server/${GCLOUD_KEYFILE_NAME}:/app/server/${GCLOUD_KEYFILE_NAME}
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    ports:
+      - "3000:3000"  
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./client:/app
+    depends_on:
+      - server        
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
